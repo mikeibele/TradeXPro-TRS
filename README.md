@@ -1,158 +1,299 @@
-# 🚀 TradeXpro (TRS) — Complete Project Guide & Documentation
+# 🚀 TradeXpro (TRS) — Ultimate Beginner's Guide & Project Documentation
 
-Welcome to **TradeXpro**! This document is designed to give you a complete, clear, and beginner-friendly overview of your codebase. Whether you are non-technical or just starting out, this guide breaks down everything step-by-step: what this software is, how its features work under the hood, how to run it locally on your computer or on a live web server, and how to convert/run it as a mobile app ( iOS and Android ).
-
----
-
-## 📌 Table of Contents
-1. [What is TradeXpro?](#-what-is-tradexpro)
-2. [Key Features Overview](#-key-features-overview)
-3. [How the System Works (Under the Hood)](#-how-the-system-works-under-the-hood)
-4. [Technology Stack Explained Simply](#-technology-stack-explained-simply)
-5. [Project Folder & Codebase Structure](#-project-folder--codebase-structure)
-6. [How to Run as a Web Application](#-how-to-run-as-a-web-application)
-   - [A. Running Locally on Your PC](#a-running-locally-on-your-computer)
-   - [B. Deploying to a Live Web Server (cPanel / VPS)](#b-deploying-to-a-live-web-server-cpanel)
-7. [How to Run as a Mobile Application](#-how-to-run-as-a-mobile-application)
-   - [Option 1: Progressive Web App (PWA) — Quickest](#option-1-progressive-web-app-pwa)
-   - [Option 2: Native App Wrapper (Capacitor / WebView) — Best for App Stores](#option-2-native-app-wrapper-capacitor--webview)
-   - [Option 3: Dedicated Native Mobile App (React Native / Expo)](#option-3-dedicated-native-mobile-app-react-native--expo)
-8. [Admin Controls & Credentials](#-admin-controls--credentials)
-9. [Troubleshooting & FAQs](#-troubleshooting--faqs)
+Welcome to **TradeXpro**! This document is created specifically for **beginners** to help you understand your codebase, how it works under the hood, how to host it live on the web with a custom domain, how to run it locally on your computer, and how to convert it into a mobile app for Android and iOS.
 
 ---
 
-## 💡 What is TradeXpro?
+## 📌 Quick Summary Table of Contents
 
-**TradeXpro** is an all-in-one financial technology (FinTech) and trading platform web application. It enables users to:
-* **Trade Assets:** Place manual or automated trades across Cryptocurrency, Forex, and Stock markets with leverage.
-* **Copy Expert Traders:** Automatically copy the trades of top-performing traders and share profits.
-* **Buy, Sell & Mint NFTs:** Access a simplified NFT marketplace with bidding and minting gas fees.
-* **Subscribe to Trading Signals:** Purchase premium signal packages to receive buying/selling recommendations via email and dashboard alerts.
-* **Apply for Financial Loans:** Request loans directly from the platform, subject to admin approval.
-* **Manage Wallets & Deposits:** Deposit funds via multiple crypto and fiat payment gateways, track transaction history, and request withdrawals.
-
-Everything is managed through a central **Admin Dashboard**, giving the administrator full operational control over user balances, trade win/loss probabilities, transaction approvals, and system settings.
-
----
-
-## ✨ Key Features Overview
-
-| Module | What It Does | Key Capabilities |
-| :--- | :--- | :--- |
-| **📈 Trading Engine** | Allows users to open short-term or long-term positions (Buy/Sell) | • Leveraged trading (5x, 10x, 50x, etc.)<br>• Timed durations (1 min, 5 min, 1 day)<br>• Admin-configurable Win Rate Direct Probability (e.g. 70% win chance)<br>• Automated expiration & profit distribution |
-| **👥 Copy Trading** | Allows beginners to duplicate expert trades automatically | • Admin adds expert profiles<br>• Profit-sharing deduction<br>• Real-time trade copying |
-| **🖼️ NFT Marketplace** | Gas-based internal NFT buying/selling/bidding | • Minting requiring wallet gas fee<br>• Categorized gallery & bidding system<br>• No complex Web3 wallet required |
-| **📡 Signals System** | Subscription plans for trading tips and alerts | • Admin creates TP (Take Profit) / SL (Stop Loss) signals<br>• Email & push notifications<br>• Access restricted to active plan subscribers |
-| **💳 Wallet & Banking** | Deposits, withdrawals, and balance tracking | • Multi-gateway integration (Stripe, Paystack, Flutterwave, BitPay)<br>• Manual admin approval for security<br>• ROI auto-compounding investment cycles |
-| **💰 Loan System** | Digital loan application engine | • Online application form<br>• Instant user credit upon admin approval<br>• Email notifications |
+1. [💡 What is TradeXpro? (Simple Explanation)](#-what-is-tradexpro-simple-explanation)
+2. [⚙️ How the Entire Codebase Works (System Architecture & Diagrams)](#️-how-the-entire-codebase-works-system-architecture--diagrams)
+3. [🛠️ Technology Stack Explained Simply](#️-technology-stack-explained-simply)
+4. [📂 Codebase Structure & Key Files](#-codebase-structure--key-files)
+5. [🌐 How to Host TradeXpro as a Website & Get a Domain](#-how-to-host-tradexpro-as-a-website--get-a-domain)
+   - [Step 1: Buying a Domain Name](#step-1-buying-a-domain-name)
+   - [Step 2: Buying Web Hosting (cPanel / VPS)](#step-2-buying-web-hosting-cpanel--vps)
+   - [Step 3: Connecting Your Domain to Your Hosting](#step-3-connecting-your-domain-to-your-hosting)
+   - [Step 4: Uploading & Installing TradeXpro](#step-4-uploading--installing-tradexpro)
+   - [Step 5: Setting Up Cron Jobs (Crucial Step)](#step-5-setting-up-cron-jobs-crucial-step)
+6. [💻 How to Run TradeXpro Locally on Your PC](#-how-to-run-tradexpro-locally-on-your-pc)
+7. [📱 How to Run / Convert TradeXpro into a Mobile App](#-how-to-run--convert-tradexpro-into-a-mobile-app)
+   - [Option 1: Progressive Web App (PWA) — Instant & Zero Cost](#option-1-progressive-web-app-pwa--instant--zero-cost)
+   - [Option 2: Native App Wrapper (Capacitor / WebView) — Google Play & Apple App Store](#option-2-native-app-wrapper-capacitor--webview--google-play--apple-app-store)
+   - [Option 3: Dedicated Native App (Expo / React Native)](#option-3-dedicated-native-app-expo--react-native)
+8. [🔑 Admin Dashboard & Operational Features](#-admin-dashboard--operational-features)
+9. [❓ FAQ & Troubleshooting for Beginners](#-faq--troubleshooting-for-beginners)
 
 ---
 
-## ⚙️ How the System Works (Under the Hood)
+## 💡 What is TradeXpro? (Simple Explanation)
 
-To understand how TradeXpro runs, think of it in 3 main layers:
+Imagine **TradeXpro** as a digital online financial web application (like a web-based trading broker platform). 
 
-```
-+-----------------------------------------------------------------------+
-|                             USER INTERFACE                            |
-|             Web Browser / Mobile View (HTML, Tailwind CSS, JS)         |
-+-----------------------------------------------------------------------+
-                                   │
-                                   ▼
-+-----------------------------------------------------------------------+
-|                           LARAVEL BACKEND                             |
-|    • Routes (web.php / api.php)  • Controllers (Trade, Loan, NFT)    |
-|    • Admin Engine               • Scheduled Cron Jobs (process:trades)|
-+-----------------------------------------------------------------------+
-                                   │
-                                   ▼
-+-----------------------------------------------------------------------+
-|                            MYSQL DATABASE                             |
-|          Stores Users, Wallet Balances, Trades, NFTs, Loans          |
-+-----------------------------------------------------------------------+
+It allows registered users to:
+* 📈 **Trade Assets:** Place trades (Buy or Sell) on Crypto, Forex, or Stocks with set time countdowns (e.g. 1 minute, 5 minutes, 1 day) and leverage (e.g. 5x, 10x).
+* 👥 **Copy Expert Traders:** Follow top traders and automatically replicate their trading activity with profit-sharing.
+* 🖼️ **Buy/Sell/Mint NFTs:** An internal marketplace where users can mint, buy, bid, and sell digital artwork without needing complex blockchain wallets.
+* 📡 **Signal Subscriptions:** Subscribe to premium daily/weekly trading signals sent directly via email and user dashboard.
+* 💳 **Deposit & Withdraw Funds:** Support for multiple payment gateways (Stripe, Paystack, Flutterwave, BitPay, Crypto) and user wallet tracking.
+* 💰 **Apply for Digital Loans:** Apply for instant loans approved manually by the Administrator.
+
+Everything is managed by **YOU** (the Administrator) through an **Admin Control Panel**.
+
+---
+
+## ⚙️ How the Entire Codebase Works (System Architecture & Diagrams)
+
+To understand how TradeXpro works as a complete system, let's break it down visually.
+
+### 1. High-Level Architecture Sketch
+
+```mermaid
+graph TD
+    A["📱 User Devices<br>(Browser / Mobile Phone)"] -->|Sends HTTP Requests| B["🌐 Web Server<br>(Apache / Nginx / cPanel)"]
+    B -->|Routes Request| C["⚡ Laravel Backend Engine<br>(PHP Business Logic)"]
+    C -->|Reads/Writes Data| D["🗄️ MySQL Database<br>(Users, Balances, Trades, Loans)"]
+    E["⏰ Background Cron Job<br>(Runs every minute)"] -->|Triggers process:trades| C
+    C -->|Calculates Win/Loss via win_rate| D
+    C -->|Sends Email & Dashboard Alerts| A
 ```
 
-1. **User Action:** A user clicks a button (e.g., "Place Buy Trade on BTC/USD").
-2. **Laravel Processing:** The request goes to a Controller ([TradeController](file:///c:/Users/AKPORHIEGBE%20SOLOMON/OneDrive/Documents/TRS/app/Http/Controllers)). Laravel checks the user's available wallet balance, verifies the trade duration, and calculates the win probability using the user's `win_rate`.
-3. **Background Cron Automation:** A periodic background timer (Cron job) runs `php artisan process:trades`. When a trade's countdown timer expires, the background job checks the result, updates the user's balance automatically, and sends an alert.
+---
 
-### 🎲 How the Win Rate Probability Works
-In TradeXpro, the `win_rate` is a number between **0 and 100** assigned by the Admin to each user:
-* **Win Rate = 70:** The user has a **70% probability to WIN** trades (and a 30% chance to lose).
-* **Win Rate = 20:** The user has a **20% probability to WIN** trades (and an 80% chance to lose).
-* **Admin Override:** Admin can manually force any trade to be marked as WIN or LOSS at any time.
+### 2. Step-by-Step Flow: How a Trade Executes Under the Hood
+
+When a user places a trade on your site, here is the exact step-by-step sequence:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as 👤 Registered User
+    participant Frontend as 💻 Browser UI
+    participant Backend as ⚙️ Laravel Controller (TradeController)
+    participant Database as 🗄️ MySQL Database
+    participant Cron as ⏰ Scheduled Cron Job
+
+    User->>Frontend: Clicks "Buy BTC/USD ($100 for 1 minute)"
+    Frontend->>Backend: Sends trade request parameters
+    Backend->>Database: Checks user balance & verifies sufficient funds
+    Backend->>Database: Saves new trade with status = "Pending/Active"
+    Backend->>Frontend: Deducts $100 & starts 60-second countdown timer
+    
+    Note over Cron,Backend: 60 Seconds Pass...
+    Cron->>Backend: Triggers command: php artisan process:trades
+    Backend->>Database: Checks user's assigned win_rate (e.g. 70%)
+    
+    alt Win Condition (70% probability)
+        Backend->>Database: Marks trade as "WIN" & credits profit to balance
+    else Loss Condition (30% probability)
+        Backend->>Database: Marks trade as "LOSS"
+    end
+    
+    Backend->>Frontend: Updates user trade history & wallet balance in real-time
+```
 
 ---
 
 ## 🛠️ Technology Stack Explained Simply
 
-* **PHP 8 & Laravel 8 Framework:** The backend engine. Think of Laravel as the manager that handles database requests, user accounts, calculations, and security.
-* **MySQL Database:** The digital filing cabinet that safely stores passwords, balances, trades, and logs.
-* **Blade Templates:** Laravel's layout builder that generates web pages dynamically.
-* **Tailwind CSS & Alpine.js:** Frontend tools that make the app look modern, sleek, interactive, and responsive on mobile screens.
-* **Livewire:** Enables real-time user updates (like live timers and balance changes) without needing full page refreshes.
+Think of the technology stack like building a house:
+
+| Technology | Role | Analogy |
+| :--- | :--- | :--- |
+| **PHP 8 & Laravel 8** | Backend Framework | **The Foundation & Plumbing:** Handles security, routes, user login, trading rules, and database communication. |
+| **MySQL** | Database System | **The Secure Vault:** Stores passwords, user balances, trade logs, loan requests, and system settings. |
+| **HTML5 & Blade Templates** | Web Page Views | **The Walls & Structure:** Formats the layout of every web page. |
+| **Tailwind CSS & Alpine.js** | Styling & Front-end Logic | **The Interior Decor & Paint:** Makes the website look clean, dark-mode modern, and smooth on mobile screens. |
+| **Livewire & AJAX** | Real-time Updates | **The Live Sensors:** Updates balances and trade countdown timers without refreshing the browser page. |
+| **Composer & NPM** | Package Managers | **The Toolbox:** Installs tools and libraries needed by PHP and JavaScript. |
 
 ---
 
-## 📁 Project Folder & Codebase Structure
+## 📂 Codebase Structure & Key Files
 
-Here is a simplified directory map of your codebase:
+Here is a simplified directory map of your project files so you know where everything lives:
 
 ```
 TRS/
-├── app/                      <-- All core backend business logic
-│   ├── Http/Controllers/     <-- Handles logic for Admin, Users, Trades, NFTs, Loans
-│   ├── Models/               <-- Database structures (User, Trade, NFT, Loan, etc.)
-│   └── Console/Commands/     <-- Background cron scripts (e.g., process:trades)
-├── bootstrap/                <-- Framework startup scripts
-├── config/                   <-- Configuration files (database, mail, services)
-├── database/                 <-- Database schemas & migrations
-├── public/                   <-- Public entry point (index.php, CSS, images, JS)
-├── resources/                <-- Frontend files
-│   ├── views/                <-- Web page templates (HTML/Blade)
-│   └── css / js/             <-- Frontend styling & scripts
-├── routes/                   <-- Web & API URL endpoints
-│   ├── web.php               <-- Web page routes & Cron endpoints
-│   ├── admin/                <-- Admin page routes
-│   └── user/                 <-- User dashboard routes
-├── storage/                  <-- Uploaded files (KYC docs, NFT images, logs)
-├── .env                      <-- Secret environment configuration file
-└── composer.json             <-- List of PHP backend packages used
+├── app/                              <-- Core Backend Logic
+│   ├── Http/Controllers/            <-- Web Request Handlers
+│   │   ├── Admin/                   <-- Admin panel actions (Users, Trades, Loans, Deposits)
+│   │   ├── User/                    <-- User dashboard actions
+│   │   ├── AutoTaskController.php   <-- ROI top-up & auto-cron tasks
+│   │   ├── BuyController.php        <-- Trade buying logic
+│   │   └── LoanController.php       <-- Digital loan application handler
+│   ├── Models/                      <-- Database models (User.php, Trade.php, Loan.php, Nft.php)
+│   └── Console/Commands/            <-- Scheduled commands (e.g., process:trades)
+├── bootstrap/                        <-- Framework startup scripts
+├── config/                           <-- Configuration settings (database, app, mail, payments)
+├── database/                         <-- Database migrations & table schemas
+├── public/                           <-- Public root folder (index.php, CSS, JS, images)
+├── resources/                        <-- Frontend Templates
+│   ├── views/                        <-- HTML/Blade files for admin & user dashboards
+│   └── css/ & js/                    <-- Stylesheets and frontend JavaScript
+├── routes/                           <-- URL Routing Rules
+│   ├── web.php                       <-- Main web routes & Cron URLs
+│   ├── admin/web.php                 <-- Admin dashboard URLs
+│   ├── user/web.php                  <-- User dashboard URLs
+│   └── api.php                       <-- API endpoints (used by mobile apps)
+├── .env                              <-- SECRET CONFIGURATION FILE (DB details, app URL)
+├── composer.json                     <-- PHP dependency registry
+└── package.json                      <-- JS dependency registry
+```
+
+* 🔗 Key files to inspect:
+  * [web.php](file:///c:/Users/AKPORHIEGBE%20SOLOMON/OneDrive/Documents/TRS/routes/web.php) — Main web routes & cron endpoints
+  * [api.php](file:///c:/Users/AKPORHIEGBE%20SOLOMON/OneDrive/Documents/TRS/routes/api.php) — Mobile API endpoints
+  * [composer.json](file:///c:/Users/AKPORHIEGBE%20SOLOMON/OneDrive/Documents/TRS/composer.json) — Backend dependencies
+  * [package.json](file:///c:/Users/AKPORHIEGBE%20SOLOMON/OneDrive/Documents/TRS/package.json) — Frontend assets & packages
+
+---
+
+## 🌐 How to Host TradeXpro as a Website & Get a Domain
+
+Since you want to launch TradeXpro as a live website, here is a complete beginner step-by-step roadmap to hosting your platform online.
+
+### Overview Diagram of Web Hosting & Domain Flow
+
+```mermaid
+graph LR
+    A["👤 User types www.yourbrand.com"] --> B["🌐 Domain Registrar<br>(Namecheap / Cloudflare / GoDaddy)"]
+    B -->|Points DNS Nameservers| C["🏢 Hosting Server<br>(cPanel / VPS)"]
+    C -->|Loads index.php| D["⚡ TradeXpro Laravel App"]
+    D -->|Queries Data| E["🗄️ MySQL Database"]
 ```
 
 ---
 
-## 💻 How to Run as a Web Application
+### Step 1: Buying a Domain Name
+A **domain name** is your web address on the internet (e.g. `www.mytradexpro.com`).
+1. Go to a trusted domain registrar such as **Namecheap**, **Cloudflare**, **Hostinger**, or **GoDaddy**.
+2. Search for your desired name (e.g., `mytradexpro.com`).
+3. Purchase the `.com` domain (usually costs around **$10 – $14 per year**).
 
-### A. Running Locally on Your Computer (PC / Mac)
+---
 
-#### Prerequisites:
-1. Install **PHP (v8.0 or v8.1)** (e.g., via XAMPP, Laragon, or Homebrew).
-2. Install **Composer** (PHP Package Manager: https://getcomposer.org).
-3. Install **Node.js & NPM** (https://nodejs.org).
-4. Install a **MySQL Database** server (included in XAMPP/Laragon).
+### Step 2: Buying Web Hosting (cPanel / VPS)
+Web hosting is the 24/7 internet computer where your project files and database will live.
+* **Recommended Hosting Type for Beginners:** **cPanel Shared Hosting** or **cPanel Business Hosting** (offered by Hostinger, Namecheap, Bluehost, or A2 Hosting).
+* **Requirements:**
+  * **PHP Version:** PHP `8.0` or `8.1` (Ensure your host supports PHP 8+).
+  * **Database:** MySQL `5.7+` or MariaDB.
+  * **Extensions:** `OpenSSL`, `PDO`, `Mbstring`, `Tokenizer`, `XML`, `CURL`, `Fileinfo`.
 
-#### Step-by-Step Local Setup:
-1. **Open your terminal / command prompt** in the project directory:
+---
+
+### Step 3: Connecting Your Domain to Your Hosting
+1. Log into your hosting account dashboard and copy your **Nameservers** (e.g., `ns1.hostingprovider.com` and `ns2.hostingprovider.com`).
+2. Log into your domain registrar (where you bought your domain in Step 1).
+3. Go to **DNS Management / Nameservers** and replace the default nameservers with your hosting nameservers.
+4. Wait 10 to 30 minutes for DNS propagation. Now typing `www.yourbrand.com` points directly to your hosting server!
+
+---
+
+### Step 4: Uploading & Installing TradeXpro on cPanel
+
+1. **Prepare Your Project Files:**
+   * Compress all project files in your repository into a `.zip` file (or use your project zip file).
+2. **Upload to cPanel:**
+   * Log into your **cPanel Dashboard**.
+   * Click on **File Manager**.
+   * Navigate to `public_html` (or your subdomain folder).
+   * Click **Upload** and upload your zip file, then click **Extract**.
+3. **Create MySQL Database & Database User:**
+   * In cPanel, click **MySQL Database Wizard**.
+   * Step 1: Create Database Name (e.g., `yourusername_tradexpro`).
+   * Step 2: Create Database User (e.g., `yourusername_tradeuser`) and set a strong password.
+   * Step 3: Select **ALL PRIVILEGES** and click Save.
+4. **Import Database SQL:**
+   * In cPanel, click **phpMyAdmin**.
+   * Select your newly created database on the left sidebar.
+   * Click **Import** at the top tab, select your `database.sql` file, and click **Go**.
+5. **Configure `.env` File:**
+   * In cPanel File Manager, locate the `.env` file inside your project root.
+   * Click **Edit** and update the following configuration lines:
+     ```env
+     APP_NAME=TradeXpro
+     APP_ENV=production
+     APP_DEBUG=false
+     APP_URL=https://yourbrand.com
+
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=yourusername_tradexpro
+     DB_USERNAME=yourusername_tradeuser
+     DB_PASSWORD=your_strong_database_password
+     ```
+   * *Security Tip:* Change file permission of `.env` to `600` or `644` in cPanel File Manager.
+
+---
+
+### Step 5: Setting Up Cron Jobs (Crucial Step)
+
+Cron jobs are automatic timers on your hosting server that run key actions in the background (like trade countdown expiration, win/loss calculation, and daily ROI investments).
+
+1. In cPanel, search for **Cron Jobs**.
+2. Under *Add New Cron Job*, set the frequency to **Every Minute** (`* * * * *`).
+3. Add the following command (replace `yourusername` with your cPanel username):
    ```bash
+   /usr/bin/php /home/yourusername/public_html/artisan process:trades >> /dev/null 2>&1
+   ```
+4. *Alternative Web Cron Option:*
+   If your host limits shell commands, set a Web Cron / External Cron service (like cron-job.org) to hit this URL every minute:
+   `https://yourbrand.com/run-profit-return?key=remedy6034`
+5. **Daily Investment Topup Cron:**
+   Set a second daily cron job targeting:
+   `https://yourbrand.com/cron`
+
+---
+
+## 💻 How to Run TradeXpro Locally on Your PC
+
+If you want to test and edit the code locally on your own computer before uploading to hosting, follow these steps:
+
+### Prerequisites Needed on Your PC:
+1. **XAMPP** or **Laragon** (Provides PHP 8 & MySQL Database server locally).
+2. **Composer** (PHP Package Manager — Download from https://getcomposer.org).
+3. **Node.js & NPM** (JavaScript package runner — Download from https://nodejs.org).
+
+### Local Setup Diagram
+
+```mermaid
+graph TD
+    A["💻 Local Terminal / PowerShell"] -->|1. composer install| B["📦 PHP Dependencies Loaded"]
+    A -->|2. npm install && npm run dev| C["🎨 Tailwind & JS Compiled"]
+    A -->|3. Configure .env| D["🗄️ Connect Local MySQL Database"]
+    A -->|4. php artisan serve| E["🚀 Local Server Live at http://127.0.0.1:8000"]
+```
+
+### Step-by-Step Local Commands:
+
+1. **Open PowerShell / Command Prompt** in your project directory:
+   ```powershell
    cd "c:\Users\AKPORHIEGBE SOLOMON\OneDrive\Documents\TRS"
    ```
-2. **Install PHP dependencies:**
+
+2. **Install PHP Packages:**
    ```bash
    composer install
    ```
-3. **Install JavaScript dependencies:**
+
+3. **Install & Compile Frontend Assets:**
    ```bash
    npm install
-   ```
-4. **Compile frontend assets:**
-   ```bash
    npm run dev
    ```
-5. **Configure your `.env` environment file:**
-   * Make a copy of `.env.example` and name it `.env`.
-   * Open `.env` and set your MySQL database details:
+
+4. **Create Local Database:**
+   * Open XAMPP Control Panel and start **Apache** and **MySQL**.
+   * Go to `http://localhost/phpmyadmin` in your browser.
+   * Click **New Database** and create a database named `tradexpro_db`.
+   * Import the database SQL schema file into `tradexpro_db`.
+
+5. **Setup Environment File:**
+   * Duplicate `.env.example` and rename it `.env`.
+   * Configure database details:
      ```env
      DB_CONNECTION=mysql
      DB_HOST=127.0.0.1
@@ -161,121 +302,132 @@ TRS/
      DB_USERNAME=root
      DB_PASSWORD=
      ```
-6. **Generate Application Key:**
+
+6. **Generate Application Encryption Key:**
    ```bash
    php artisan key:generate
    ```
-7. **Import Database:**
-   * Create a database named `tradexpro_db` in PHPMyAdmin or MySQL Workbench.
-   * Import the provided SQL database file (e.g. `database.sql`) into your MySQL server.
-8. **Link Storage for Uploads:**
+
+7. **Create Storage Link for Images & Uploads:**
    ```bash
    php artisan storage:link
    ```
-9. **Start the Local Web Server:**
+
+8. **Start Local Server:**
    ```bash
    php artisan serve
    ```
-10. **Access your site in your web browser:**
-    * **User Dashboard:** `http://127.0.0.1:8000`
-    * **Admin Dashboard:** `http://127.0.0.1:8000/admin/login`
+   * Open your browser and go to `http://127.0.0.1:8000`.
 
 ---
 
-### B. Deploying to a Live Web Server (cPanel / Hosting)
+## 📱 How to Run / Convert TradeXpro into a Mobile App
 
-1. **Upload Files:** Upload the zip file of your codebase to your hosting account (`public_html` or sub-domain folder) via cPanel File Manager and extract it.
-2. **Create MySQL Database:** In cPanel, go to *MySQL Database Wizard*, create a database & user, grant all privileges.
-3. **Import Database:** Open *phpMyAdmin*, select your database, and import `database.sql`.
-4. **Configure `.env` File:** Edit `.env` inside cPanel File Manager and update database details:
-   ```env
-   APP_URL=https://yourdomain.com
-   DB_DATABASE=your_cpanel_dbname
-   DB_USERNAME=your_cpanel_dbuser
-   DB_PASSWORD=your_cpanel_dbpassword
+You asked how to run TradeXpro as a mobile app. Here are the 3 main approaches:
+
+```mermaid
+graph TD
+    A["📱 TradeXpro Mobile Solutions"] --> B["Option 1: Progressive Web App (PWA)<br>• Mobile responsive web view<br>• Add to Home Screen<br>• Zero app store cost"]
+    A --> C["Option 2: Native Wrapper (Capacitor/WebView)<br>• Converts website into .apk & .ipa<br>• Publishable to Play Store & App Store<br>• Best balance of speed & store presence"]
+    A --> D["Option 3: Dedicated Native App (Expo/React Native)<br>• Separate mobile codebase<br>• Connects via Laravel Sanctum REST API<br>• Native performance & push notifications"]
+```
+
+---
+
+### Option 1: Progressive Web App (PWA) — *Instant & Zero Cost*
+TradeXpro's frontend is built with Tailwind CSS and Livewire, meaning it automatically adjusts seamlessly to mobile screen sizes (smartphones & tablets).
+* **How it works:** Users open Safari (iPhone) or Chrome (Android), go to `https://yourbrand.com`, and tap **"Add to Home Screen"**.
+* **Result:** It installs an app icon on their phone home screen that launches full-screen like a native app without needing App Store approval!
+
+---
+
+### Option 2: Native App Wrapper (Capacitor / WebView) — *Recommended for Google Play & Apple App Store*
+You can convert your live web application into native Android (`.apk` / `.aab`) and iOS (`.ipa`) app packages using **Ionic Capacitor**.
+
+#### Step-by-Step Wrapper Setup:
+1. First, host your web application on a live domain (e.g. `https://yourbrand.com`).
+2. Open your terminal in the project directory and install Capacitor:
+   ```bash
+   npm install @capacitor/core @capacitor/cli
+   npx cap init TradeXpro com.tradexpro.app --web-dir public
    ```
-5. **Setup Background Cron Jobs (Crucial for Trades & Investments):**
-   In cPanel *Cron Jobs*, add the following commands:
-   * **Trade Expiration Processor (Every Minute):**
-     ```bash
-     /usr/bin/php /home/yourusername/public_html/artisan process:trades >> /dev/null 2>&1
-     ```
-     *(Or set a URL Cron request to: `https://yourdomain.com/run-profit-return?key=remedy6034`)*
-   * **Daily ROI Top-up:**
-     ```bash
-     wget -O - -q https://yourdomain.com/cron
-     ```
+3. Add Android and iOS platforms:
+   ```bash
+   npx cap add android
+   npx cap add ios
+   ```
+4. Open `capacitor.config.json` and set your live site URL:
+   ```json
+   {
+     "appId": "com.tradexpro.app",
+     "appName": "TradeXpro",
+     "webDir": "public",
+     "server": {
+       "url": "https://yourbrand.com",
+       "cleartext": true
+     }
+   }
+   ```
+5. Open Android Studio / Xcode to build the release binary:
+   ```bash
+   npx cap open android
+   ```
+6. Export the `.apk` or `.aab` file and publish directly to the Google Play Store and Apple App Store!
 
 ---
 
-## 📱 How to Run as a Mobile Application
-
-You want to offer TradeXpro as a mobile app for iOS and Android. Here are the 3 best paths to accomplish this:
-
-```
-                     +---------------------------------------+
-                     |     TradeXpro Mobile Possibilities    |
-                     +---------------------------------------+
-                                         │
-        ┌────────────────────────────────┼────────────────────────────────┐
-        ▼                                ▼                                ▼
-  [Option 1: PWA]              [Option 2: Native Wrapper]       [Option 3: Full App]
-• Quickest setup             • Generates .apk & .ipa          • Built with React Native
-• Runs in mobile browser     • Capacitor / WebView            • Connects via Sanctum API
-• Add to Home Screen         • Publishable to App Stores      • High performance
-```
-
-### Option 1: Progressive Web App (PWA) — *Fastest & Easiest*
-TradeXpro's template is already designed to be fully mobile-responsive. 
-* **How it works:** Users visit your website on Safari or Chrome on their phone and tap *"Add to Home Screen"*.
-* **Pros:** Zero setup cost, no app store approvals needed, works on iOS & Android immediately.
-
-### Option 2: Native App Wrapper (Capacitor / WebView) — *Recommended for App Stores*
-You can convert your live web app into native Android (`.apk` / `.aab`) and iOS (`.ipa`) packages using **Ionic Capacitor** or Android Studio WebView.
-* **Step 1:** Deploy your web application to a live domain (e.g., `https://yourdomain.com`).
-* **Step 2:** Create an Ionic Capacitor wrapper project:
-  ```bash
-  npm install @capacitor/core @capacitor/cli
-  npx cap init TradeXpro com.tradexpro.app --web-dir public
-  npx cap add android
-  npx cap add ios
-  ```
-* **Step 3:** Point the Capacitor configuration (`capacitor.config.json`) to your live URL (`https://yourdomain.com`).
-* **Step 4:** Build the APK in Android Studio and publish it to the Google Play Store and Apple App Store!
-
-### Option 3: Dedicated Native Mobile App (Expo / React Native)
-If you want a native mobile app with separate native code:
-* The backend already includes **Laravel Sanctum** API endpoints ([routes/api.php](file:///c:/Users/AKPORHIEGBE%20SOLOMON/OneDrive/Documents/TRS/routes/api.php)) for authenticating users via API.
-* An Expo configuration folder (`.expo`) is present in the workspace. A mobile developer can build a React Native or Flutter frontend that connects directly to your Laravel API endpoints for login, trading, deposits, and withdrawals.
+### Option 3: Dedicated Native App (Expo / React Native)
+If you want to build a completely separate native mobile app in the future:
+* The codebase already has API endpoints configured in [routes/api.php](file:///c:/Users/AKPORHIEGBE%20SOLOMON/OneDrive/Documents/TRS/routes/api.php) using **Laravel Sanctum**.
+* An `.expo` directory exists in the workspace. A React Native or Flutter developer can create a mobile UI that connects directly to your backend API endpoints for authentication, trade placement, deposit requests, and loan applications.
 
 ---
 
-## 🔑 Admin Controls & Credentials
+## 🔑 Admin Dashboard & Operational Features
 
-* **Admin Portal URL:** `https://yourdomain.com/admin/login`
+Once your app is live, you can access the powerful Admin Control Panel:
+
+* **Admin URL:** `https://yourbrand.com/admin/login`
 * **Default Admin Email:** `admin@admin.com`
-* **Default Admin Password:** `admin123` *(Be sure to change this immediately after setup!)*
+* **Default Admin Password:** `admin123` *(Change password immediately upon first login!)*
 
-### Admin Superpowers:
-1. **User Management:** Adjust user wallet balances, verify KYC documents, toggle account status.
-2. **Win Rate Control:** Adjust individual user `win_rate` (0 to 100%) to control trade winning frequency.
-3. **Manual Trade Override:** Manually set any pending or active trade to **WIN** or **LOSS**.
-4. **Loans & Withdrawals:** Review, approve, or reject user loan requests and withdrawal submissions.
+```mermaid
+graph TD
+    A["👑 Admin Panel Powers"] --> B["👤 User Management<br>(Adjust balances, verify KYC)"]
+    A --> C["🎯 Win Rate Control<br>(Set 0-100% win probability per user)"]
+    A --> D["⚡ Manual Trade Override<br>(Set trade result to WIN or LOSS)"]
+    A --> E["💳 Financial Approvals<br>(Approve/Reject Loans & Withdrawals)"]
+    A --> F["🧹 System Maintenance<br>(Clear Cache: yourbrand.com/admin/clear-cache)"]
+```
 
----
-
-## ❓ Troubleshooting & FAQs
-
-* **Q: Why are trade timers not ending automatically?**
-  * *Answer:* Ensure your Cron job is active or visit `https://yourdomain.com/run-profit-return?key=remedy6034` in your browser to trigger trade processing manually.
-* **Q: How do I clear application cache after making changes?**
-  * *Answer:* Visit `https://yourdomain.com/admin/clear-cache` or run `php artisan config:clear && php artisan cache:clear` in terminal.
-* **Q: Can I run this without real cryptocurrency wallets for NFTs?**
-  * *Answer:* Yes! TradeXpro features an off-chain Web2 simulated NFT engine. Users pay gas fees directly from their platform account balance without requiring Web3 wallets like MetaMask.
+### 🎯 How User Win Rates Work:
+* In TradeXpro, each user has a `win_rate` value (between 0 and 100) set by the Admin:
+  * **`win_rate = 70`**: User has a **70% probability to WIN** trades.
+  * **`win_rate = 30`**: User has a **30% probability to WIN** trades (70% chance to lose).
+  * **Manual Override:** Admin can manually force any active or pending trade to output as WIN or LOSS anytime.
 
 ---
 
-*Documentation generated for TradeXpro Codebase.*
-#   - T r a d e X p r o - T R S - 
- 
- 
+## ❓ FAQ & Troubleshooting for Beginners
+
+#### 1. What do I do if I see a "500 Internal Server Error"?
+* **Cause:** Missing `.env` file, missing application key, or database connection mismatch.
+* **Fix:** Ensure `.env` exists in your server folder, verify database credentials in `.env`, and run `php artisan key:generate`.
+
+#### 2. Why are trade countdown timers not finishing automatically?
+* **Cause:** The server Cron job is not configured or not firing every minute.
+* **Fix:** Ensure the cPanel cron command is active or trigger it manually by visiting:
+  `https://yourbrand.com/run-profit-return?key=remedy6034`
+
+#### 3. How do I clear cache when I change settings or code?
+* Visit `https://yourbrand.com/admin/clear-cache` in your browser or run:
+  ```bash
+  php artisan config:clear && php artisan cache:clear && php artisan view:clear
+  ```
+
+#### 4. Do I need expensive Web3 blockchain node setup for NFTs?
+* **No!** TradeXpro includes an off-chain Web2 simulated NFT marketplace engine. Users buy, sell, and mint NFTs using their account wallet balances without needing complex crypto extension wallets like MetaMask.
+
+---
+
+*Documentation created for TradeXpro Codebase.*
