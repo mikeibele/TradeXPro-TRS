@@ -1,6 +1,6 @@
 # 🚀 TradeXpro (TRS) — Complete Project Guide & Documentation
 
-Welcome to **TradeXpro**! This document is designed to give you a complete, clear, and beginner-friendly overview of your codebase. Whether you are non-technical or just starting out, this guide breaks down everything step-by-step: what this software is, how its features work under the hood, how to run it locally on your computer or on a live web server, and how to convert/run it as a mobile app (iOS and Android).
+Welcome to **TradeXpro**! This document is designed to give you a complete, clear, and beginner-friendly overview of your codebase. Whether you are non-technical or just starting out, this guide breaks down everything step-by-step: what this software is, how its features work under the hood, how to run it locally on your computer or on a live web server, and how to convert/run it as a mobile app ( iOS and Android ).
 
 ---
 
@@ -276,5 +276,6 @@ If you want a native mobile app with separate native code:
 ---
 
 *Documentation generated for TradeXpro Codebase.*
-#   - T r a d e X p r o - T R S -  
+#   - T r a d e X p r o - T R S - 
+ 
  
