@@ -1,0 +1,149 @@
+
+VERY IMPORTANT NOTICE :PLEASE RIGHT CLICK ON UR .env FILE AND GIVE IT PERMISSON 600 IMMEDITELY AFTER U ENTERED UR DATABASE DETEAILS IN IT, ITS VERY IMPORTANT U DO THIS.
+Installation
+Server Requirements:
+
+*. Ensure your PHP version >= 8.1.0
+
+* .Mysql 5.X
+
+
+Installation Process:
+
+1. Upload and extract the mainscipt.zip files to your website public_html directory or the directory you which to run your site from (sub-directory or sub-domain) in your filemanager
+
+2. Create your DATABASE and USER E.G. DATABASE: remedy_db, USER: remedy_user, PASSWORD: ******** .
+
+3. Ensure you grant the database user all permissions.
+
+4. Go to your phpmyadmin and upload the database.sql
+
+5. Go back to file manager public_html or directory where you uploaded and extracted the mainscript.zip and edit the .env file the enter the database details you created
+VERY IMPORTANT NOTICE :PLEASE RIGHT CLICK ON UR .env FILE AND GIVE IT PERMISSON 600 IMMEDITELY AFTER U ENTERED UR DATABASE DETEAILS IN IT, ITS VERY IMPORTANT U DO THIS.
+
+6. Congrats, you are done!
+
+admin url is 
+
+yoururl/admin/login
+admin@admin.com
+admin123
+
+OW TRADING WORKS
+The win_rate we are adding (a number between 0 and 100) controls how often the user will WIN trades — not lose. The win_rate is set by admin for each user 
+
+For example:
+
+If a user has a win_rate = 70, this means the user has a 70% chance to WIN a trade.
+If win_rate = 30, this means the user has only a 30% chance to WIN, meaning they have a 70% chance to LOSE.
+📊 What It Means in Practice
+Higher win_rate = More wins = More profit for the user.
+Lower win_rate = More losses = More losses for the user.
+🔄 It’s a Direct Probability, Not Inverted
+win_rate 80% = 80% chance of winning a trade.
+win_rate 20% = 20% chance of winning (so 80% chance of losing).
+✅ This gives the admin full control over how "lucky" each user is when placing trades. You can use it to make some users consistently profitable (VIP users maybe), and others more risky.
+
+investment cronjob
+ wget -O--q yourdomain.com/cron e.g. wget -O--q https://yoursite.com/cron
+trading cronjob (ajax woks though so can work without cronjob)
+ /usr/bin/php /home/username/public_html/artisan process:trades >> /dev/null 2>&1
+or 
+wget -O - -q https://yoursite.com/run-profit-return?key=remedy6034
+
+
+
+
+📌 Complete Feature of Remedy TradeXpro
+✅ 1. Trading Module
+User Trading Features
+✔ Users can place trades (Buy/Sell).
+✔ Users can select asset type (Crypto, Forex, Stock).
+✔ Users can choose leverage (5x, 10x, 50x, etc.).
+✔ Users can set trade duration (1 min, 5 min, 1 day, etc.).
+✔ Users can view trade history with real-time countdown timer.
+✔ Users receive instant trade execution notifications.
+
+Trade Processing & Automation
+✔ Trades expire automatically after set duration.
+✔ Profit/Loss is automatically calculated based on trade result.
+✔ Win/Loss probability is calculated based on user’s win rate.
+✔ Users earn profit if they win (balance credited).
+✔ Users lose trade amount if they lose.
+✔ Real-time AJAX trade expiration processing.
+
+Admin Trading Features
+✔ Admin can view all trades (Active, Pending, Closed).
+✔ Admin can set trades as WIN or LOSS manually.
+✔ Admin can adjust user balances if needed.
+✔ Admin can view trade statistics (Total Wins/Losses).
+
+✅ 2. Copy Trading System
+✔ Users can copy trades from expert traders.
+✔ Admin can add expert traders with profit-sharing settings.
+✔ Users can subscribe/unsubscribe from copy trading.
+✔ System automatically replicates expert trades to subscribed users.
+✔ Profit sharing is automatically deducted and credited to experts.
+
+✅ 3. NFT Module (Without Blockchain)
+User Features
+✔ Users can create NFTs (with images, details, and categories).
+✔ Users must pay a gas fee from their account balance.
+✔ Users can only edit or delete their own NFTs.
+✔ Users can list NFTs in a gallery categorized by type.
+✔ Users can buy NFTs (Balance deducted, Ownership transferred).
+✔ Bid system allows users to place bids on NFTs.
+✔ Bids expire after a set duration.
+
+Admin Features
+✔ Admin can add, edit, and delete NFTs (No gas fee required).
+✔ Admin can view all NFT sales and approve/reject bids.
+✔ Admin can view sold NFTs and buyer/seller details.
+
+✅ 4. Signal Subscription System
+Admin Features
+✔ Admin can create trading signals (Entry price, TP, SL, leverage).
+✔ Admin can create Signal Plans (Form to add plans with price & duration).
+✔ Admin can manage signals (CRUD for signals).
+✔ Admin can view all subscribed users.
+✔ Admin can send email alerts for new signals.
+
+User Features
+✔ Users can subscribe to signal plans (Balance deducted).
+✔ Users receive trading signals in the dashboard.
+✔ Users get real-time alerts via email & dashboard notifications.
+✔ Users can only access signals if they have an active subscription.
+
+✅ 5. Loan System
+User Features
+✔ Users can apply for loans (Amount, Credit Facility, Duration, Income, Purpose).
+✔ Users receive an email confirmation that their loan is under review.
+✔ Users get credited if the loan is approved.
+✔ Users get notified if the loan is rejected.
+yoururl/admin/clear-cache
+Admin Features
+✔ Admin can view all loan applications.
+✔ Admin can approve or reject loans.
+✔ If approved, loan amount is credited to the user's balance.
+✔ If rejected, the user is notified without crediting.
+
+
+
+✅ 7. User Account & Wallet System
+✔ Users can deposit funds to trade or buy NFTs.
+✔ Users can withdraw funds (Admin approval required).
+✔ Users can view account balance in real-time.
+✔ Users can see transaction history (Deposits, Withdrawals, Trades).
+
+📌 Summary
+
+✅ Trading System (Manual & Automated)
+✅ Copy Trading (Profit-sharing system)
+✅ NFT Marketplace (Buy, Sell, Bid, Manage NFTs)
+✅ Signal Subscription (Trading signals with email alerts)
+✅ Loan System (Users apply, Admin approves/rejects)
+✅ Security & Licensing (Restrict to 3 cPanels, prevent hacking)
+✅ User Wallet & Transactions
+Flexible investment management system
+Email notification on registration, when ROI drops and at the end of investment circle.
+Automated and dynamic ROI (Return on investment topup)
